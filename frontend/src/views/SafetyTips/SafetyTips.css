@@ -1,0 +1,20 @@
+.textContainer {
+    padding-top: 1.5rem !important;
+}
+
+.tipsPicture {
+    position: absolute;
+    width: 100%;
+}
+
+.tipsSource {
+    position: absolute !important;
+    z-index: 1 !important;
+    bottom: 20px;
+    right: 20px;
+    color: rgba(0,0,0,.6);
+}
+
+.link {
+    color: rgba(0,0,0,.6);
+}
