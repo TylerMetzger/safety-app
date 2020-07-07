@@ -1,4 +1,9 @@
-/*div.ui.header.aboutHeader div.content div.sub.header.aboutSubheader{
-    size: 10rem;
-    color: aqua;
-}*/
+/* Need to do !important to override semantic ui react stuff */
+
+.textContainer {
+    padding-top: 1.5rem !important;
+}
+
+.source {
+    color: rgba(0,0,0,.6)
+}

@@ -1,0 +1,8 @@
+.textContainer {
+    padding-top: 1.5rem !important;
+}
+
+.resourcesHeader, .resourcesSubheader {
+    height: 0px !important;
+    padding-bottom: 3.25rem !important;
+}
