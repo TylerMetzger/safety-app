@@ -7,10 +7,10 @@ const NearMe = () => {
 
     return (
         <Container text className="textContainer">
-            <Header className="searchHeader" textAlign="center" size="huge">
+            <Header id="header" textAlign="center" size="huge">
                 <Header.Content>
                     Find Protests
-                        <Header.Subheader className="searchSubheader">
+                        <Header.Subheader id="subheader" className="searchSubheader">
                         Click a marker for details
                         </Header.Subheader>
                 </Header.Content>

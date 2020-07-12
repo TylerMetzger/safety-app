@@ -1,9 +1,13 @@
-/* Need to do !important to override semantic ui react stuff */
+@import "../../assets/websitePalette.css";
+@import "../../assets/fonts/stylesheet.css";
 
 .textContainer {
     padding-top: 1.5rem !important;
 }
 
 .source {
-    color: rgba(0,0,0,.6)
+    color: rgba(0,0,0,.6);
+}
+.source:hover {
+    color: var(--accent-blue-dark);
 }

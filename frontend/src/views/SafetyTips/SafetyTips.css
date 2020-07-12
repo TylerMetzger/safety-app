@@ -1,20 +1,18 @@
+@import "../../assets/websitePalette.css";
+@import "../../assets/fonts/stylesheet.css";
+
 .textContainer {
     padding-top: 1.5rem !important;
 }
 
-.tipsPicture {
-    position: absolute;
-    width: 100%;
+.columnHeader {
+    font-family: pragati_narrowregular, questrialregular !important;
+    font-size: 25px !important;
 }
 
-.tipsSource {
-    position: absolute !important;
-    z-index: 1 !important;
-    bottom: 20px;
-    right: 20px;
-    color: rgba(0,0,0,.6);
+/*.source {
+    color: var(--accent-blue-dark);
 }
-
-.link {
-    color: rgba(0,0,0,.6);
-}
+.source:hover {
+    color: var(--accent-blue-dark);
+}*/

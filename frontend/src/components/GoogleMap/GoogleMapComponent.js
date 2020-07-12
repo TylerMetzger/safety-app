@@ -1,10 +1,9 @@
 import "./GoogleMapComponent.css";
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useState, useEffect, useCallback, useRef } from "react";
 import { GoogleMap, LoadScript, Marker, MarkerClusterer, Autocomplete } from '@react-google-maps/api';
 import { getGoogleMapsKey } from "../../config/configUtil.js";
 import { getAllProtests } from "../../api/ProtestApi.js";
 import { Modal } from "semantic-ui-react";
-//import moment from 'moment';
 
 const GoogleMapComponent = () => {
     const [map, setMap] = useState(null);
@@ -25,13 +24,22 @@ const GoogleMapComponent = () => {
     };
 
     const containerStyle = { //some styling stuff for the map
-        width: '1000px',
-        height: '600px',
+        width: "1000px",
+        height: '580px',
         top: "5%",
         left: "50%",
         position: "relative",
         transform: "translate(-50%, 0%)"
     };
+    const mobileContainerStyle = { //some styling stuff for the map
+        width: "100%",
+        height: '580px',
+        top: "5%",
+        left: "50%",
+        position: "relative",
+        transform: "translate(-50%, 0%)"
+    };
+
     const center = { //Positve is North and East negative is South and West
         lat: 36.82, // -90 to 90 (S to N)
         lng: -98.58 // -180 to 180 (W to E)
@@ -125,27 +133,44 @@ const GoogleMapComponent = () => {
     }, [])
     const onMarkerClick = (markerPos) => { //when you click on a marker, zoom in and slide over to it
         map.panTo(markerPos.latLng);
-        if (map.getZoom() < 8)
-            map.setZoom(8);
     } //ideally the modal opens after this but was not able to figure it out so far
 
 
-    return (
-        <LoadScript
-            googleMapsApiKey={getGoogleMapsKey()}
-        >
-            <GoogleMap
-                mapContainerStyle={containerStyle}
-                onLoad={onLoad}
-                onUnmount={onUnmount}
+    if (window.innerWidth >= 1100)
+        return (
+            <LoadScript
+                googleMapsApiKey={getGoogleMapsKey()}
             >
-                { /* Child components, such as markers, info windows, etc. */}
-                <MarkerClusterer options={clustererOptions} maxZoom={16} gridSize={30}>
-                    {protestMarkers}
-                </MarkerClusterer>
-            </GoogleMap>
-        </LoadScript >
-    )
+                <GoogleMap
+                    mapContainerStyle={containerStyle}
+                    onLoad={onLoad}
+                    onUnmount={onUnmount}
+                >
+                    { /* Child components, such as markers, info windows, etc. */}
+                    <MarkerClusterer options={clustererOptions} maxZoom={16} gridSize={30}>
+                        {protestMarkers}
+                    </MarkerClusterer>
+                </GoogleMap>
+            </LoadScript >
+        );
+    else {
+        return (
+            <LoadScript
+                googleMapsApiKey={getGoogleMapsKey()}
+            >
+                <GoogleMap
+                    mapContainerStyle={mobileContainerStyle}
+                    onLoad={onLoad}
+                    onUnmount={onUnmount}
+                >
+                    { /* Child components, such as markers, info windows, etc. */}
+                    <MarkerClusterer options={clustererOptions} maxZoom={16} gridSize={30}>
+                        {protestMarkers}
+                    </MarkerClusterer>
+                </GoogleMap>
+            </LoadScript >
+        );
+    }
 };
 
 export default GoogleMapComponent;
