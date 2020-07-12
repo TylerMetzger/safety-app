@@ -9,7 +9,6 @@ import SafetyTips from "./views/SafetyTips/SafetyTips.js";
 
 import NavBar from "./components/NavBar/NavBar.js";
 
-
 const App = () => {
   return (
     <div>
@@ -20,7 +19,7 @@ const App = () => {
         <Route exact path="/resources" component={Resources} />
         <Route exact path="/safetytips" component={SafetyTips} />
         <Route exact path="/">
-          <Redirect to="/about" />
+          <Redirect to="/nearme" />
         </Route>
         <Route component={NotFound} />
         {/* The switch case allows us to go through the different views as directed by the routes.*/}
