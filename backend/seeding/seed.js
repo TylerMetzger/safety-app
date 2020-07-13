@@ -4,11 +4,7 @@ const path = require("path");
 const configUtil = require("../config/configUtil.js");
 
 const seedConfig = {
-    database: {
-        host: configUtil.getDbHost(),
-        port: configUtil.getDbPort(),
-        name: configUtil.getDbName()
-    },
+    database: configUtil.getDbUri(),
     dropDatabase: true
 };
 const seeder = new Seeder(seedConfig);
