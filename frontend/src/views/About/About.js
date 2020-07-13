@@ -1,28 +1,43 @@
 import "./About.css";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { Container, Header } from "semantic-ui-react"
 
 const About = () => {
-
     return (
         <div>
-            <Container text>
-                <Header className="aboutHeader" textAlign="center" size="huge">
+            <Container text className="textContainer">
+                <Header id="header" textAlign="center">
                     <Header.Content>
                         About
-                        <Header.Subheader className="aboutSubheader">
+                        <Header.Subheader id="subheader">
                             Why protest?
                         </Header.Subheader>
                     </Header.Content>
                 </Header>
-                <p>
-                    Nulla sit amet leo ante. Pellentesque ut diam magna. Proin ac pellentesque urna, id sodales mauris. Morbi accumsan ut dui quis gravida. Aliquam laoreet massa non elementum aliquam. Morbi pharetra at nulla a malesuada. Nullam diam neque, ultricies aliquet consequat id, venenatis at dui. In ultricies tincidunt tortor, in malesuada nibh ultrices vel. Sed aliquet dignissim vehicula.
+                <p id="paragraph">
+                    Protesting is an important foundation of a proper democracy. Not only is it protected by the first
+                    amendment, but it is one of the key methods of demanding accountability from those that represent you.
+                    By exercising your first amendment rights, you are strengthening democracy via direct and active
+                    participation. You are sharing views, opinions, grievances, and criticisms of the current governance
+                    and demand that you will see change. Protests allow commonly marginalized groups to force their
+                    government to recognize them.
                 </p>
-                <p>
-                    Nam vitae dolor non urna dignissim sodales. Fusce sagittis aliquet neque facilisis sollicitudin. Sed pellentesque vehicula est, et eleifend felis vehicula vel. Morbi ornare tellus eget neque convallis, sit amet ultrices metus egestas. Etiam nec venenatis urna, et pharetra elit. Donec quis consequat eros, id convallis eros. Mauris vestibulum velit at arcu fermentum, quis aliquam ipsum tincidunt. Sed laoreet posuere felis id luctus. Phasellus erat felis, venenatis vitae libero vel, pulvinar feugiat massa. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Phasellus eu magna a ipsum convallis lacinia in aliquam mauris. Vivamus turpis turpis, varius ut tincidunt vel, elementum id arcu. Sed finibus odio non lectus dapibus eleifend eu ut sem. Vestibulum quis libero in ipsum congue finibus et et velit. Vivamus et ipsum aliquet, suscipit est ut, dapibus eros. Nullam scelerisque dolor lacus, a fringilla sem pretium eu.
+                <p id="paragraph">
+                    Not all change is immediate. Protesting doesn't just require one stint of activism, but rather constant
+                    political involvement. Protesting is a civic duty that leads to a more informed and involved population.
+                    For those of you that are ready to protest, this website will show a map of protests sent in to its
+                    database along with other resources you may need. Thank you.
                 </p>
-                <p>
-                    Morbi nec sapien tortor. Etiam vel ornare magna, eget venenatis lectus. Aenean ac metus sed lorem sagittis rhoncus in convallis mauris. Vestibulum vestibulum arcu risus, et mollis ipsum ornare tincidunt. Donec ultricies ultrices blandit. Mauris quis blandit nisl. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer auctor iaculis congue. Integer condimentum, nibh molestie laoreet dapibus, ante odio tincidunt lacus, a semper enim augue vitae velit. Nulla fermentum lectus vel mi venenatis hendrerit. Integer vel mi volutpat massa fermentum rhoncus nec eget ligula. Nunc orci lacus, gravida et ultrices eu, vestibulum euismod ex. Nam ultricies ultrices augue non semper.
+                <p id="paragraph">
+                    Sources:
+                    <br />
+                    <a href="https://right-to-protest.org/debate-protest-rights/why-the-right-to-protest/" className="source">
+                        Why The Right to Protest?
+                    </a>
+                    <br />
+                    <a href="https://www.opendemocracy.net/en/six-reasons-why-protest-is-so-important/" className="source">
+                        Six reasons why protest is so important for democracy
+                    </a>
                 </p>
             </Container>
         </div >

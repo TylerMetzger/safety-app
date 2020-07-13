@@ -1,0 +1,25 @@
+@import "../../assets/fonts/stylesheet.css";
+@import "../../assets/websitePalette.css";
+
+.navBar {
+    font-family: bebas_neueregular !important;
+    font-size: 18px !important;
+    background-color: var(--accent-blue-dark) !important;
+    /*color: white !important;*/
+    border-top: 0 !important;
+    border-right: 0 !important;
+    border-left: 0 !important;
+    border-bottom-color: rgba(34,36,38,.1) !important;
+}
+
+.ui.sticky, .sticky {
+    background-color: var(--accent-blue-dark) !important;
+}
+
+.ui.menu .item {
+    color: var(--accent-yellow-light) !important;
+}
+
+.ui.menu .active.item {
+    color: var(--accent-yellow-dark) !important;
+}

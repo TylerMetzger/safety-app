@@ -1,98 +1,109 @@
 import "./Resources.css";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { Container, Header, List, Image } from "semantic-ui-react"
+import sources from "./articles.js"
 
 const Resources = () => {
+    const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+    const handleWindowSizeChange = () => {
+        setWindowWidth(window.innerWidth);
+    };
+    const useEventListener = () => {
+        // Create a ref that stores handler
+        const savedHandler = useRef();
+
+        // Update ref.current value if handler changes.
+        // This allows our effect below to always get latest handler ...
+        // ... without us needing to pass it in effect deps array ...
+        // ... and potentially cause effect to re-run every render.
+        useEffect(() => {
+            savedHandler.current = handleWindowSizeChange;
+        }, []);
+
+        useEffect(
+            () => {
+                // Make sure window supports addEventListener
+                // On 
+                const isSupported = window && window.addEventListener;
+                if (!isSupported) return;
+
+                // Create event listener that calls handler function stored in ref
+                const eventListener = event => savedHandler.current(event);
+
+                // Add event listener
+                window.addEventListener('resize', eventListener);
+
+                // Remove event listener on cleanup
+                return () => {
+                    window.removeEventListener('resize', eventListener);
+                };
+            },
+            ['resize', window] // Re-run if eventName or element changes
+        );
+    };
+    useEventListener('resize', handleWindowSizeChange);
+
+    const subheading = (num) => {
+        let whichSubheading;
+        if (num == 1)
+            whichSubheading = sources.subheading1;
+        else if (num == 2)
+            whichSubheading = sources.subheading2;
+        else if (num == 3)
+            whichSubheading = sources.subheading3;
+
+        const list = whichSubheading.articles.map(source => {
+            if (windowWidth >= 580) {
+                return (
+                    <List.Item>
+                        <Image src={source.favicon} verticalAlign='middle' size="mini" />
+                        <List.Content>
+                            <List.Header className="articleName" as='a' href={source.link} target="_about">{source.name}</List.Header>
+                            <List.Description className="description">{source.desc}</List.Description>
+                        </List.Content>
+                    </List.Item>
+                );
+            }
+            else {
+                return (
+                    <List.Item>
+                        <List.Content className="listContent">
+                            <List.Header className="articleName" as='a' href={source.link} target="_about">{source.name}</List.Header>
+                            <List.Description className="description">{source.desc}</List.Description>
+                        </List.Content>
+                    </List.Item>
+                );
+            }
+        })
+
+        return (
+            <div>
+                <Header as="h3" textAlign="left" size="medium" className={"heading" + num}>
+                    {whichSubheading.title}
+                </Header>
+                <List divided relaxed>
+                    {list}
+                </List>
+            </div>
+        )
+    }
 
     return (
         <div>
-            <Container text>
-                <Header className="resourcesHeader" textAlign="center" size="huge">
+            <Container text className="textContainer">
+                <Header id="header" textAlign="center" size="huge">
                     <Header.Content>
                         Resources
-                        <Header.Subheader className="resourcesSubheader">
+                        <Header.Subheader id="subheader">
                             Some extra info
                         </Header.Subheader>
                     </Header.Content>
                 </Header>
-                <Header as="h3" textAlign="left" size="medium">
-                    Lorem ipsum dolor sit amet
-                </Header>
-                <List divided relaxed>
-                    <List.Item>
-                        <Image src="https://www.washingtonpost.com/favicon.ico" verticalAlign='middle' size="mini" />
-                        <List.Content>
-                            <List.Header as='a' href="https://www.washingtonpost.com">Link #1</List.Header>
-                            <List.Description as='a'>Short desc. of above</List.Description>
-                        </List.Content>
-                    </List.Item>
-                    <List.Item>
-                        <Image src="https://www.cnn.com/favicon.ico" verticalAlign='middle' size="mini" />
-                        <List.Content>
-                            <List.Header as='a' href="https://www.cnn.com/">Link #2</List.Header>
-                            <List.Description as='a'>Short desc. of above</List.Description>
-                        </List.Content>
-                    </List.Item>
-                    <List.Item>
-                        <Image src="https://www.aclu.org/favicon.ico" verticalAlign='middle' size="mini" />
-                        <List.Content>
-                            <List.Header as='a' href="https://www.aclu.org/">Link #3</List.Header>
-                            <List.Description as='a'>Short desc. of above</List.Description>
-                        </List.Content>
-                    </List.Item>
-                </List>
-                <Header as="h3" textAlign="left" size="medium">
-                    consectetuer adipiscing elit
-                </Header>
-                <List divided relaxed>
-                    <List.Item>
-                        <Image src="https://www.nbcnews.com/favicon.ico" verticalAlign='middle' size="mini" />
-                        <List.Content>
-                            <List.Header as='a' href="https://www.nbcnews.com/">Link #1</List.Header>
-                            <List.Description as='a'>Short desc. of above</List.Description>
-                        </List.Content>
-                    </List.Item>
-                    <List.Item>
-                        <Image src="https://www.usatoday.com/favicon.ico" verticalAlign='middle' size="mini" />
-                        <List.Content>
-                            <List.Header as='a' href="https://www.usatoday.com/">Link #2</List.Header>
-                            <List.Description as='a'>Short desc. of above</List.Description>
-                        </List.Content>
-                    </List.Item>
-                    <List.Item>
-                        <Image src="https://www.theguardian.com/favicon.ico" verticalAlign='middle' size="mini" />
-                        <List.Content>
-                            <List.Header as='a' href="https://www.theguardian.com/us">Link #3</List.Header>
-                            <List.Description as='a'>Short desc. of above</List.Description>
-                        </List.Content>
-                    </List.Item>
-                </List>
-                <Header as="h3" textAlign="left" size="medium">
-                    Aenean commodo ligula eget dolor
-                </Header>
-                <List divided relaxed>
-                    <List.Item>
-                        <Image src="https://www.bbc.co.uk/favicon.ico" verticalAlign='middle' size="mini" />
-                        <List.Content>
-                            <List.Header as='a' href="https://www.bbc.co.uk">Link #1</List.Header>
-                            <List.Description as='a'>Short desc. of above</List.Description>
-                        </List.Content>
-                    </List.Item>
-                    <List.Item>
-                        <Image src="https://www.nytimes.com/favicon.ico" verticalAlign='middle' size="mini" />
-                        <List.Content>
-                            <List.Header as='a' href="https://www.nytimes.com/" >Link #2</List.Header>
-                            <List.Description as='a'>Short desc. of above</List.Description>
-                        </List.Content>
-                    </List.Item>
-                    <List.Item>
-                        <Image src="https://www.cnn.com/favicon.ico" verticalAlign='middle' size="mini" />
-                        <List.Content>
-                            <List.Header as='a' href="https://www.cnn.com/">Link #2</List.Header>
-                            <List.Description as='a'>Short desc. of above</List.Description>
-                        </List.Content>
-                    </List.Item>
-                </List>
+                {subheading(1)}
+                <br />
+                {subheading(2)}
+                <br />
+                {subheading(3)}
             </Container>
         </div >
     );

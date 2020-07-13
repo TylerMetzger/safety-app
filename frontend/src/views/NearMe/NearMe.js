@@ -1,21 +1,23 @@
 import "./NearMe.css";
 import React, { useState, useEffect } from "react";
-import { Input } from "semantic-ui-react"
+import { Container, Header } from "semantic-ui-react"
+import GoogleMapComponent from "../../components/GoogleMap/GoogleMapComponent.js"
 
 const NearMe = () => {
 
     return (
-        <div>
-            <Input
-                style={{
-                    position: 'absolute', left: '50%', top: '50%',
-                    transform: 'translate(-50%, -50%)'
-                }}
-                centered icon="search"
-                placeholder="Enter a location..."
-                size="massive"
-            />
-        </div >
+        <Container text className="textContainer">
+            <Header id="header" textAlign="center" size="huge">
+                <Header.Content>
+                    Find Protests
+                        <Header.Subheader id="subheader" className="searchSubheader">
+                        Click a marker for details
+                        </Header.Subheader>
+                </Header.Content>
+            </Header>
+
+            <GoogleMapComponent />
+        </Container>
     );
 };
 

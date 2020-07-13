@@ -1,4 +1,13 @@
-/*div.ui.header.aboutHeader div.content div.sub.header.aboutSubheader{
-    size: 10rem;
-    color: aqua;
-}*/
+@import "../../assets/websitePalette.css";
+@import "../../assets/fonts/stylesheet.css";
+
+.textContainer {
+    padding-top: 1.5rem !important;
+}
+
+.source {
+    color: rgba(0,0,0,.6);
+}
+.source:hover {
+    color: var(--accent-blue-dark);
+}
