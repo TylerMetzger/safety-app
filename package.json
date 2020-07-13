@@ -14,7 +14,7 @@
     "runFrontend": "npm run start",
     "install-all": "concurrently \"npm install\" \"cd frontend && npm install\"",
     "build": "cd frontend && npm run build",
-    "start": "node server/server.js",
+    "start": "node backend/server.js",
     "heroku-postbuild": "cd frontend && npm install && npm install --only=dev --no-shrinkwrap && npm run build"
   },
   "repository": {
