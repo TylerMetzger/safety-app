@@ -4,7 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "concurrently \"nodemon backend/server.js\" \"cd frontend && npm run start\""
+    "dev": "concurrently \"nodemon backend/server.js\" \"cd frontend && npm run start\"",
+    "install-all": "concurrently \"npm install\" \"cd client && npm install\"",
+    "start": "node server/server.js"
   },
   "repository": {
     "type": "git",
