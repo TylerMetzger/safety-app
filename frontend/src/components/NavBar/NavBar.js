@@ -76,18 +76,18 @@ const NavBar = () => {
                     attached
                     widths={4}
                 >
-                    <Menu.Item name="About" href="/about" active={active === "/about"}>
-                        About
+                    <Menu.Item name="NearMe" href="/nearme" active={active === "/nearme"}>
+                        Find Protests
                     </Menu.Item>
                     <Menu.Item name="SafetyTips" href="/safetytips" active={active === "/safetytips"}>
                         Safety Tips
                     </Menu.Item>
-                    <Menu.Item name="NearMe" href="/nearme" active={active === "/nearme"}>
-                        Find Protests
-                    </Menu.Item>
                     <Menu.Item name="Resources" href="/resources" active={active === "/resources"}>
                         Resources
                     </Menu.Item>
+                    <Menu.Item name="About" href="/about" active={active === "/about"}>
+                        About
+                     </Menu.Item>
                 </Menu>
             </Sticky>
         );

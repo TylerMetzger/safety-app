@@ -6,7 +6,7 @@ import GoogleMapComponent from "../../components/GoogleMap/GoogleMapComponent.js
 const NearMe = () => {
 
     return (
-        <Container text className="textContainer">
+        <Container className="textContainer">
             <Header id="header" textAlign="center" size="huge">
                 <Header.Content>
                     Find Protests

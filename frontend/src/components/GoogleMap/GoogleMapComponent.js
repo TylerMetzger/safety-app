@@ -1,7 +1,6 @@
 import "./GoogleMapComponent.css";
 import React, { useState, useEffect, useCallback, useRef } from "react";
 import { GoogleMap, LoadScript, Marker, MarkerClusterer, Autocomplete } from '@react-google-maps/api';
-import { getGoogleMapsKey } from "../../config/configUtil.js";
 import { getAllProtests } from "../../api/ProtestApi.js";
 import { Modal } from "semantic-ui-react";
 
@@ -24,14 +23,6 @@ const GoogleMapComponent = () => {
     };
 
     const containerStyle = { //some styling stuff for the map
-        width: "1000px",
-        height: '580px',
-        top: "5%",
-        left: "50%",
-        position: "relative",
-        transform: "translate(-50%, 0%)"
-    };
-    const mobileContainerStyle = { //some styling stuff for the map
         width: "100%",
         height: '580px',
         top: "5%",
@@ -93,7 +84,7 @@ const GoogleMapComponent = () => {
 
             if (protestDate >= Date.now()) { //if the protest still hasn't happened yet
                 const displayDate = dayNames[protestDate.getDay()] + ", " + monthNames[protestDate.getMonth()] + " " + protestDate.getDate() + ", " + protestDate.getFullYear();
-                const displayTime = ((protestDate.getHours() + 24) % 12 || 12) + ":" + protestDate.getMinutes() + " " + hours[Math.floor(protestDate.getHours() / 12)];
+                const displayTime = ((protestDate.getHours() + 24) % 12 || 12) + ":" + ((protestDate.getMinutes() < 10 ? '0' : '') + protestDate.getMinutes()) + " " + hours[Math.floor(protestDate.getHours() / 12)];
                 //The above is just setting up some of the display stuff using the Date() object.
                 let organizers;
                 if (protest.organizer) {
@@ -135,42 +126,22 @@ const GoogleMapComponent = () => {
         map.panTo(markerPos.latLng);
     } //ideally the modal opens after this but was not able to figure it out so far
 
-
-    if (window.innerWidth >= 1100)
-        return (
-            <LoadScript
-                googleMapsApiKey={getGoogleMapsKey()}
+    return (
+        <LoadScript
+            googleMapsApiKey={process.env.REACT_APP_MAPS_KEY}
+        >
+            <GoogleMap
+                mapContainerStyle={containerStyle}
+                onLoad={onLoad}
+                onUnmount={onUnmount}
             >
-                <GoogleMap
-                    mapContainerStyle={containerStyle}
-                    onLoad={onLoad}
-                    onUnmount={onUnmount}
-                >
-                    { /* Child components, such as markers, info windows, etc. */}
-                    <MarkerClusterer options={clustererOptions} maxZoom={16} gridSize={30}>
-                        {protestMarkers}
-                    </MarkerClusterer>
-                </GoogleMap>
-            </LoadScript >
-        );
-    else {
-        return (
-            <LoadScript
-                googleMapsApiKey={getGoogleMapsKey()}
-            >
-                <GoogleMap
-                    mapContainerStyle={mobileContainerStyle}
-                    onLoad={onLoad}
-                    onUnmount={onUnmount}
-                >
-                    { /* Child components, such as markers, info windows, etc. */}
-                    <MarkerClusterer options={clustererOptions} maxZoom={16} gridSize={30}>
-                        {protestMarkers}
-                    </MarkerClusterer>
-                </GoogleMap>
-            </LoadScript >
-        );
-    }
+                { /* Child components, such as markers, info windows, etc. */}
+                <MarkerClusterer options={clustererOptions} maxZoom={16} gridSize={30}>
+                    {protestMarkers}
+                </MarkerClusterer>
+            </GoogleMap>
+        </LoadScript >
+    )
 };
 
 export default GoogleMapComponent;

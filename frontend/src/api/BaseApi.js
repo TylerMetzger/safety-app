@@ -1,8 +1,7 @@
 import axios from "axios";
+const { REACT_APP_API_URL } = process.env;
 
 export default axios.create({
-    baseURL: process.env.NODE_ENV === "development"
-        ? `http://localhost:5000/`
-        : "https://safety-app-02192.herokuapp.com/",
+    baseURL: REACT_APP_API_URL,
     responseType: "json"
 });
