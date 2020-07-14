@@ -1,7 +1,7 @@
 import axios from "axios";
-//const { REACT_APP_API_URL } = process.env;
+const { REACT_APP_API_URL } = process.env;
 
 export default axios.create({
-    baseURL: "/",
+    baseURL: REACT_APP_API_URL,
     responseType: "json"
 });
